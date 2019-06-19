@@ -1,0 +1,123 @@
+
+  <div class="row padding-bottom-12"> 
+    <div class="col-sm-2 col-sm-2-reduce"> 
+        <label for="txtTask"><b>Task:</b></label> 
+    </div>
+    <div class="col-sm-4 padding-no-right-left"> 
+        <input class="form-control" id="txtTask" type="text"  [(ngModel)]="taskSearch" /> 
+    </div>
+    <div class="col-sm-2 col-sm-2-reduce"> 
+        <label for="txtPTask"><b>Parent Task:</b></label> 
+    </div>
+    <div class="col-sm-4 padding-no-right-left"> 
+        <input class="form-control" id="txtPTask" type="text" 
+         [(ngModel)]="ParentName" /> 
+    </div>
+</div>    
+<div class="row">
+   <div class="col-sm-2 col-sm-2-reduce"> 
+       <label for="txtPriFrom"><b>Priority From:</b></label> 
+   </div>
+   <div class="col-sm-1 col-sm-1-increase padding-no-right-left">
+       <input class="form-control" id="txtPriFrom" type="text"  
+       [(ngModel)]="priorityFrom" />
+   </div>
+   <div class="col-sm-2"> 
+       <label for="txtPriTo"><b>Priority To:</b></label> 
+   </div>
+   <div class="col-sm-1 col-sm-1-increase padding-no-right-left"> 
+       <input class="form-control" id="txtPriTo" type="text"  
+        [(ngModel)]="priorityTo" 
+       />     
+  </div>
+   <div class="col-sm-2 col-sm-2-reduce"> 
+       <label for="txtStartDate"><b>Start Date:</b></label> 
+   </div>
+   <div class="col-sm-1 col-sm-1-increase padding-no-right-left"> 
+       <input class="form-control" id="txtStartDate" type="text"  
+       [(ngModel)]="StartDate" placeholder="dd/MM/yyy" /> 
+   </div>
+   <div class="col-sm-2 col-sm-2-reduce"> 
+       <label for="txtEndDate"><b>End Date:</b></label> 
+   </div>
+   <div class="col-sm-1 col-sm-1-increase padding-no-right-left"> 
+       <input class="form-control" id="txtEndDate" type="text"   placeholder="dd/MM/yyy"
+        [(ngModel)]="EndDate"/> 
+   </div>
+</div>    
+<div class="row">
+  <div class="col-sm-12"><hr /></div>
+</div>
+     <!-- <div *ngFor="let task of tasks; let i = index">
+              <td>Index: {{i}}</td>
+              <td>{{task.ParentName}}</td>
+      </div>--> <!--; let i = index -->
+<div class="row" 
+*ngFor="let task of tasks |  filterdata:taskSearch:ParentName:priorityTo:priorityFrom:startDate:endDate ">
+          <div class="col-sm-12">
+                  <div class="row">
+                          <div class="col-sm-2">
+                                  <b>Task</b>
+                          </div>
+                          <div class="col-sm-2">
+                                <b>Parent</b>
+                          </div>
+                          <div class="col-sm-1">
+                                  <b>Priority</b>
+                          </div>
+                          <div class="col-sm-2">
+                                <b>Start</b>
+                          </div>
+                          <div class="col-sm-1">
+                                <b>End</b>
+                          </div>
+                  </div>
+                  <div class="row">
+                          <div class="col-sm-2">                                    
+                             <input type="text" disabled="disabled" class="form-control"
+                             value={{task.TaskName}} />
+                          </div>
+                          <div class="col-sm-2">                                    
+                            <input type="text" disabled="disabled" class="form-control"
+                            value={{task.ParentName}} />
+                                  
+                          </div>
+                          <div class="col-sm-1">
+                                  {{task.Priority}}
+                          </div>
+                          <div class="col-sm-2 col-sm-2-reduce">
+                                  {{task.StartDate  | date: 'dd/MM/yyyy' }}
+                          </div>
+                          <div class="col-sm-2 col-sm-2-reduce">
+                                  {{task.EndDate | date: 'dd/MM/yyyy'}}
+                          </div>
+                          <div class="col-sm-1 padding-no-right-left">
+                                  <p *ngIf="task.Status !='C'"> 
+                                  <button type="button" class="btn btn-secondary" 
+                                  (click)="getTaskByTaskId(task.Taskid)" 
+                                  [routerLink]="[{outlets:{popup:['edit']}}]">Edit</button>
+                                   </p>
+
+                                  <p *ngIf="task.Status =='C'"> 
+                                          <button type="button"  disabled
+                                           class="btn btn-secondary disabled" 
+                                       >Edit</button>
+                                  </p>
+                          </div>                            
+                          <div class="col-sm-1 padding-no-right-left" >    
+                                  <button type="button" class="btn btn-secondary endTask"
+                                  (click)="endTask(task.Taskid)"  >End Task</button>
+                          </div>                            
+                          <div class="col-sm-1 padding-no-right-left">        
+                                  <button type="button" class="btn btn-secondary delTask"
+                                  (click)="deleteTask(task.Taskid)"  >Delete</button>      
+                              </div>
+                          
+                  </div>
+          </div>
+  </div> 
+ 
+
+
+
+

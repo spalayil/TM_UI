@@ -1,0 +1,113 @@
+<form class="" [formGroup]="formGroup" (ngSubmit)="onSubmit()" ng-controller="addController">
+    <span class="row padding-bottom-12">
+    <div class="col-sm-12  border border-dark rounded">
+    <div class="row space-point5">
+          <div class="col-sm-2">
+              <label for="task"><b>Task: </b></label> 
+          </div>
+          <div class="col-sm-10">             
+                  <div class="form-group"> 
+                      <input type="text" formControlName="taskcontrol"
+                      [(ngModel)]="task.taskName" class="form-control"> 
+              <div *ngIf="formGroup.controls['taskcontrol'].invalid && 
+              (formGroup.controls['taskcontrol'].dirty|| formGroup.controls['taskcontrol'].touched) "
+              class="alert alert-danger">
+               <div  [hidden]="!(formGroup.controls['taskcontrol'].hasError('required'))">
+                  TaskName is required </div>
+                  </div>
+                  </div>
+          </div> 
+    </div>
+    <div class="row space-point5">
+          <div class="col-sm-2">
+              <label for="priority"><b>Priority:</b></label> 
+          </div>
+          <div class="col-sm-10" > 
+                    
+                  0<input type="range"  formControlName="prioritycontrol"
+                   id="priority" value="0"  [(ngModel)]="task.priority"  
+                   min="0" max="30"  >30
+                   <br />
+                   Select value :{{task.priority}}
+
+          </div> 
+    </div>
+    <div class="row space-point5">
+          <div class="col-sm-2">
+              <label for="ddlParent"><b>Parent Task:</b></label> 
+          </div>
+          <div class="col-sm-10">  
+              <select type="number" id="ddlParent"  
+              [ngModelOptions]="{standalone:true}" class="form-control"
+              [(ngModel)]="task.parentName">
+              <option [ngValue]=""></option>
+                <option *ngFor="let parent of parents" [ngValue]="parent.TaskId"
+                >{{parent.TaskName}}</option>
+              </select>
+          </div> 
+    </div>
+    <div class="row space-point5">
+          <div class="col-sm-2">
+              <label for="startdate"><b>StartDate:</b></label> 
+          </div>
+          <div class="col-sm-10">            
+              <input type="date"   formControlName="startdatecontrol"
+              [(ngModel)]="task.startDate"   auto-fill-sync
+              class="form-control" />
+              <div *ngIf="formGroup.controls['startdatecontrol'].invalid && 
+              (formGroup.controls['startdatecontrol'].dirty|| formGroup.controls['startdatecontrol'].touched) "
+              class="alert alert-danger">          
+              <div  [hidden]="!(formGroup.controls['startdatecontrol'].hasError('required'))"
+              >StartDate is required </div>    
+              <div  [hidden]="!(formGroup.controls['startdatecontrol'].hasError('pattern'))"
+                >StartDate is not valid,Enter date in format MM/DD/YYYY format </div>  
+              </div>            
+         </div> 
+    </div>
+    <div class="row space-point5">
+          <div class="col-sm-2">
+              <label for="enddate"><b>EndDate:</b></label> 
+          </div>
+          <div class="col-sm-10"> 
+              <input type="date"    formControlName="enddatecontrol"
+              [(ngModel)]="task.endDate"   
+              class="form-control"   /> 
+              <div *ngIf="formGroup.controls['enddatecontrol'].invalid && 
+              (formGroup.controls['enddatecontrol'].dirty|| formGroup.controls['enddatecontrol'].touched) "
+              class="alert alert-danger">          
+            <div  [hidden]="!(formGroup.controls['enddatecontrol'].hasError('required'))"
+              >EndDate is required </div>        
+              <div  [hidden]="!(formGroup.controls['enddatecontrol'].hasError('pattern'))"
+                >EndDate is not valid,Enter date in format MM/DD/YYYY format </div> 
+              </div>
+          </div> 
+    </div>
+    <div class="row space-point5">
+          <div class="col-sm-2"> 
+          </div>
+          <div class="col-sm-2">    
+              <div class="form-group">   
+                      <button type="button" class="btn btn-secondary cusadd" [disabled]="!(formGroup.valid)"
+                      id="btnAdd" (click)="onSubmit()">Add Task</button> 
+                    </div>
+          </div> 
+          <div class="col-sm-1">  
+              <div class="form-group">     
+                      <button type="button" class="btn btn-secondary" id="btnCancel"
+                      (click)="Reset()">
+                        Reset</button> 
+                </div>
+          </div> 
+    </div>
+  </div>
+  </span>
+  </form>
+  <script>
+   
+      angular.module('rangeExample', [])
+        .controller('addController', ['$scope', function($scope) {
+          $scope.value = 1;
+          $scope.min = 0;
+          $scope.max = 30;
+        }]);
+    </script>
