@@ -71,18 +71,13 @@ export class SharedService {
 
   deleteTask(id :number):Observable<boolean>{ 
     const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-    return (this.http.delete<boolean>(this.API_URL+'/api/task/' + id,  
+    return (this.http.delete<boolean>(this.API_URL+'/api/task/deletetask/' + id,  
     httpOptions))  ;
 
 }
 
-endTask(id :number):Observable<boolean>{ 
-  /*const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json',
-  'Access-Control-Allow-Origin' : '*',
-  'Access-Control-Allow-Methods': 'GET,PUT,POST,DELETE, OPTIONS'}) };  */
-  const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json'}) };  
-  return (this.http.get<boolean>(this.API_URL+'/api/task/endTask/' + id,  
-  httpOptions))  ;
+endTask(id :number):Observable<boolean>{   
+  return (this.http.get<boolean>(this.API_URL+'/api/task/endtask/' + id))  ;
 
  } 
   updateTask1(task: Task):Observable<Task[]>{ 

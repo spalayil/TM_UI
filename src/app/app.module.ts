@@ -10,13 +10,16 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { FilterdataPipe } from './filterdata.pipe';
+import { EditTaskComponent } from './edit-task/edit-task.component';
+import {MatDialogModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
     ViewTaskComponent,
-    FilterdataPipe
+    FilterdataPipe,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,
@@ -24,10 +27,12 @@ import { FilterdataPipe } from './filterdata.pipe';
     FormsModule,
     HttpModule,
     ReactiveFormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MatDialogModule
  
   ],
   providers: [],
   bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }

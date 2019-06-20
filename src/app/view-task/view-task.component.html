@@ -75,26 +75,26 @@
                   <div class="row">
                           <div class="col-sm-2">                                    
                              <input type="text" disabled="disabled" class="form-control"
-                             value={{task.TaskName}} />
+                             value={{task.task}} />
                           </div>
                           <div class="col-sm-2">                                    
                             <input type="text" disabled="disabled" class="form-control"
-                            value={{task.ParentName}} />
+                            value={{task.parentTask}} />
                                   
                           </div>
                           <div class="col-sm-1">
-                                  {{task.Priority}}
+                                  {{task.priority}}
                           </div>
                           <div class="col-sm-2 col-sm-2-reduce">
-                                  {{task.StartDate  | date: 'dd/MM/yyyy' }}
+                                  {{task.startDate  | date: 'dd/MM/yyyy' }}
                           </div>
                           <div class="col-sm-2 col-sm-2-reduce">
-                                  {{task.EndDate | date: 'dd/MM/yyyy'}}
+                                  {{task.endDate | date: 'dd/MM/yyyy'}}
                           </div>
                           <div class="col-sm-1 padding-no-right-left">
                                   <p *ngIf="task.Status !='C'"> 
                                   <button type="button" class="btn btn-secondary" 
-                                  (click)="getTaskByTaskId(task.Taskid)" 
+                                  (click)="getTaskByTaskId(task.taskId)" 
                                   [routerLink]="[{outlets:{popup:['edit']}}]">Edit</button>
                                    </p>
 
@@ -106,11 +106,11 @@
                           </div>                            
                           <div class="col-sm-1 padding-no-right-left" >    
                                   <button type="button" class="btn btn-secondary endTask"
-                                  (click)="endTask(task.Taskid)"  >End Task</button>
+                                  (click)="endTask(task.taskId)"  >End Task</button>
                           </div>                            
                           <div class="col-sm-1 padding-no-right-left">        
                                   <button type="button" class="btn btn-secondary delTask"
-                                  (click)="deleteTask(task.Taskid)"  >Delete</button>      
+                                  (click)="deleteTask(task.taskId)"  >Delete</button>      
                               </div>
                           
                   </div>

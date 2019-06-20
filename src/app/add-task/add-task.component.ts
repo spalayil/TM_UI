@@ -72,17 +72,18 @@ selectedLevel :Task;
         alert('Validation error.')
           return;
       }
-      alert(this.task.taskName);
-      this.sharedService.addTask(this.task).subscribe( status => {  
-        alert(status);
-      this.sharedService.status = status;  
-        if(status ==true)
-          alert('Record added successfully'); 
-          else
-          alert('Task could not be added.'); 
+      alert(this.task.parentTask);
+      this.sharedService.addTask(this.task).subscribe(
+        status => {
+          alert('Record added successfully');
+          console.log('Success!', status);
           this.router.navigate([{outlets:{popup:null}}]);
-          window.location.reload(); 
-        }); 
+          window.location.reload();           
+        }, error => {
+          console.log('ERROR!', error);
+          alert('Task could not be added.'); 
+        this.router.navigate([{outlets:{popup:null}}]);
+        window.location.reload(); }); 
  
   }
 }

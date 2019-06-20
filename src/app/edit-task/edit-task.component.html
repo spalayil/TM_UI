@@ -1,0 +1,124 @@
+
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmit()" ng-controller="editontroller">
+      <span class="row padding-bottom-12">
+      <div class="col-sm-12  border border-dark rounded">
+          <div class="row space-point5">
+                <div class="col-sm-12 active">
+                  <b>Update Task:</b> 
+                </div> 
+          </div>
+      <div class="row space-point5">
+            <div class="col-sm-2">
+                <label for="task"><b>Task:</b></label> 
+            </div>
+            <div class="col-sm-10">             
+             <div class="form-group"> 
+                  <input type="text" formControlName="taskcontrol"
+                  class="form-control" readonly> 
+          <div *ngIf="formGroup.controls['taskcontrol'].invalid && 
+          (formGroup.controls['taskcontrol'].dirty|| formGroup.controls['taskcontrol'].touched) "
+          class="alert alert-danger">
+           <div  [hidden]="!(formGroup.controls['taskcontrol'].hasError('required'))">
+              TaskName is required </div>
+              </div>
+              </div> 
+            </div> 
+      </div>
+      <div class="row space-point5">
+            <div class="col-sm-2">
+                <label for="priority"><b>Priority:</b></label> 
+            </div>
+            <div class="col-sm-10">                            
+                    0<input type="range"  formControlName="prioritycontrol"
+                     id="priority"    
+                     min="0" max="30"  
+                     oninput="priorityOutputId.value = priority.value" >30
+                     <br />
+                     Select value :<output name="prioritycontrol" id="priorityOutputId" 
+                     class='output' > {{task.Priority}}</output> 
+                <div *ngIf="formGroup.controls['prioritycontrol'].invalid &&
+                 (formGroup.controls['prioritycontrol'].dirty|| formGroup.controls['prioritycontrol'].touched) "
+                class="alert alert-danger"> 
+                 <div  [hidden]="!(formGroup.controls['prioritycontrol'].hasError('required'))">
+                   Priority is required </div>
+                </div>  
+            </div> 
+      </div>
+      <div class="row space-point5">
+            <div class="col-sm-2">
+                <label for="ddlParent"><b>Parent Task:</b></label> 
+            </div>
+            <div class="col-sm-10">  
+                <select type="number" id="ddlParent" [(ngModel)]="parentid"
+                [ngModelOptions]="{standalone:true}" class="form-control">
+                <option [ngValue]=""></option>
+                  <option *ngFor="let parent of parents" 
+                  [ngValue]="parent.Taskid"
+                  >{{parent.TaskName}}</option>
+                </select> 
+            </div> 
+      </div>
+      <div class="row space-point5">
+            <div class="col-sm-2">
+                <label for="startdate"><b>StartDate:</b></label> 
+            </div>
+            <div class="col-sm-10">            
+                <input type="text"   formControlName="startdatecontrol" 
+                class="form-control"  /> 
+                <div *ngIf="formGroup.controls['startdatecontrol'].invalid && 
+                (formGroup.controls['startdatecontrol'].dirty|| formGroup.controls['startdatecontrol'].touched) "
+                class="alert alert-danger">          
+                <div  [hidden]="!(formGroup.controls['startdatecontrol'].hasError('required'))"
+                >StartDate is required </div>    
+                <div  [hidden]="!(formGroup.controls['startdatecontrol'].hasError('pattern'))"
+                  >StartDate is not valid,Enter date in format MM/DD/YYYY format </div>  
+                </div>          
+           </div> 
+      </div>
+      <div class="row space-point5">
+            <div class="col-sm-2">
+                <label for="enddate"><b>EndDate:</b></label> 
+            </div>
+            <div class="col-sm-10"> 
+                <input type="text"    formControlName="enddatecontrol"
+                 auto-fill-sync
+                class="form-control"  auto-fill-sync  class="form-control" /> 
+                <div *ngIf="formGroup.controls['enddatecontrol'].invalid && 
+                (formGroup.controls['enddatecontrol'].dirty|| formGroup.controls['enddatecontrol'].touched) "
+                class="alert alert-danger">          
+              <div  [hidden]="!(formGroup.controls['enddatecontrol'].hasError('required'))"
+                >EndDate is required </div>        
+                <div  [hidden]="!(formGroup.controls['enddatecontrol'].hasError('pattern'))"
+                  >EndDate is not valid,Enter date in format MM/DD/YYYY format </div> 
+                </div> 
+            </div> 
+      </div>
+      <div class="row space-point5">
+            <div class="col-sm-2"> 
+            </div>
+            <div class="col-sm-2">    
+                <div class="form-group">   
+                        <button type="button" class="btn btn-secondary" [disabled]="!(formGroup.valid)"
+                        id="btnAdd" (click)="onSubmit()">Update</button> 
+                      </div>
+            </div> 
+            <div class="col-sm-1">  
+                <div class="form-group">     
+                        <button type="button" class="btn btn-secondary" id="btnCancel"
+                        (click)="Cancel()">
+                          Cancel</button> 
+                  </div>
+            </div> 
+      </div>
+    </div>
+    </span>
+    </form>
+    <script>
+     
+        angular.module('rangeExample', [])
+          .controller('editController', ['$scope', function($scope) {
+            $scope.value = 1;
+            $scope.min = 0;
+            $scope.max = 30;
+          }]);
+      </script>

@@ -35,31 +35,30 @@ export class ViewTaskComponent implements OnInit {
     this.sharedService.getTasks().subscribe(tasks=>this.tasks=tasks);  
   }
   
-  endTask(id:number):void{     
-     this.sharedService.endTask(id).subscribe( status => {  
-      this.sharedService.status = status; 
-    if(this.sharedService.status){
-      alert("Task ended successfully.");
-    }else{
-      alert("Task could not end.");
-    }
-   this.getTasks(); });
+  endTask(id:number):void{ 
+    alert("reached");
+     this.sharedService.endTask(id).subscribe( 
+      status => {  
+        alert("Are you sure you want to end the task?");
+        }, error => {
+        alert("Task could not ended.");  
+        this.getTasks(); 
+   });
    }
    getTaskByTaskId(id:number):void{ 
+     alert("asdas");
     this.router.navigate([{outlets:{popup:'edit'}}]);
     this.sharedService.taskid =id; 
+    alert(id);
    }
      
    deleteTask(id:number):void{     
-    this.sharedService.deleteTask(id).subscribe( status => {  
-      this.sharedService.status = status;  
-    if(this.sharedService.status){
-      alert("Task deleted successfully.");
-    }else{
-      alert("Task could not deleted.");
-    }
-
-    this.getTasks(); 
+    this.sharedService.deleteTask(id).subscribe( 
+      status => {  
+      alert("Are you sure you want to delete?");
+      }, error => {
+      alert("Task could not deleted.");  
+      this.getTasks(); 
   } );
    }
    
