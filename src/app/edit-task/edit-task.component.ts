@@ -62,20 +62,20 @@ ngOnInit() {
           FormControl('', Validators.compose(validationcollection))); 
             this.sharedService.getTaskByTaskId(this.id).subscribe(task=>{
             this.task= new Task();
-            this.task.task= task.TaskName;
+            this.task.taskName= task.TaskName;
             this.task.priority=task.Priority;
             this.task.startDate=task.StartDate;
             this.task.endDate=task.EndDate;  
-            this.parentid=task.Parentid; 
+            this.parentid=task.parentName; 
             this.sharedService.getTasks().subscribe(tasks=>this.parents=tasks);  
         if(this.task !=null){
-          this.formGroup.controls['taskcontrol'].setValue(this.task.task);
+          this.formGroup.controls['taskcontrol'].setValue(this.task.taskName);
           this.formGroup.controls['prioritycontrol'].setValue(this.task.priority);
           let latest_date =this.datePipe.transform(this.task.startDate, 'MM/dd/yyyy'); 
           this.formGroup.controls['startdatecontrol'].setValue(latest_date);
           latest_date =this.datePipe.transform(this.task.endDate, 'MM/dd/yyyy');
           this.formGroup.controls['enddatecontrol'].setValue(latest_date); 
-          this.parentid=this.task.parentTask;  
+         // this.parentid=this.task.parentName;  
         }        
           });//,5000
        // });         

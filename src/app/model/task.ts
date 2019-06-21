@@ -1,11 +1,10 @@
 export class Task {
     taskId :  number;
-    parentTask :number;
-    parentName:string;
-    task:string="";
+    parentName:string="";
+    taskName:string="";
     startDate:Date = new Date();
     endDate:Date = new Date();
     priority:number;
-    status:string
+    status:boolean
 
 }

@@ -72,13 +72,12 @@ selectedLevel :Task;
         alert('Validation error.')
           return;
       }
-      alert(this.task.parentTask);
+      this.task.status = true;
       this.sharedService.addTask(this.task).subscribe(
         status => {
           alert('Record added successfully');
           console.log('Success!', status);
-          this.router.navigate([{outlets:{popup:null}}]);
-          window.location.reload();           
+          this.router.navigateByUrl("viewTask");           
         }, error => {
           console.log('ERROR!', error);
           alert('Task could not be added.'); 

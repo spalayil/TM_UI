@@ -11,7 +11,7 @@ import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { FilterdataPipe } from './filterdata.pipe';
 import { EditTaskComponent } from './edit-task/edit-task.component';
-import {MatDialogModule} from '@angular/material';
+
 
 @NgModule({
   declarations: [
@@ -28,7 +28,7 @@ import {MatDialogModule} from '@angular/material';
     HttpModule,
     ReactiveFormsModule,
     HttpClientModule,
-    MatDialogModule
+ 
  
   ],
   providers: [],
