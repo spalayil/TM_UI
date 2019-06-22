@@ -6,7 +6,6 @@ import {ActivatedRoute} from '@angular/router';
 import {SharedService} from '../service/shared.service';
 import {Task} from '../model/task';
 import {FilterdataPipe} from '../filterdata.pipe';
-// Observable class extensions 
 import {BrowserModule} from '@angular/platform-browser'
 
 @Component({
@@ -15,6 +14,7 @@ import {BrowserModule} from '@angular/platform-browser'
   styleUrls: ['./view-task.component.css']
 })
 export class ViewTaskComponent implements OnInit {
+  formGroup: FormGroup = null; 
 
   constructor(private sharedService:SharedService,private router : Router,
     private activatedRoute :ActivatedRoute,private formBuilder: FormBuilder) { 
@@ -63,8 +63,6 @@ export class ViewTaskComponent implements OnInit {
         console.log("edited");
         alert("Succesfully Edit");
         this.closeModalDialog();
-
-
       }
     )
    }
@@ -73,6 +71,7 @@ export class ViewTaskComponent implements OnInit {
     this.sharedService.deleteTask(id).subscribe( 
       status => {  
       alert("Are you sure you want to delete?");
+      this.ngOnInit(); 
       }, error => {
       alert("Task could not deleted.");  
       this.getTasks(); 
@@ -83,22 +82,17 @@ export class ViewTaskComponent implements OnInit {
    {
     this.display='none';
    }
-   
-
+   parents :Task[];
+   parentid :number;
   ngOnInit() { 
-             // use the builder to create the  the form object
              var _builder = new FormBuilder();
              this.formGroup = _builder.group({});
-             // Adding a simple validation
              this.formGroup.addControl('taskcontrol', new
                  FormControl('',Validators.required)); 
             this.formGroup.addControl('prioritycontrol', new
                             FormControl('',Validators.required));        
-             // Adding a composite validation
              var validationcollection = [];
              validationcollection.push(Validators.required);
-             // validationcollection.push(Validators.pattern
-             // ('^(?:(?:10|12|0?[13578])/(?:3[01]|[12][0-9]|0?[1-9])/(?:1[8-9]\\d{2}|[2-9]\\d{3})|(?:11|0?[469])/(?:30|[12][0-9]|0?[1-9])/(?:1[8-9]\\d{2}|[2-9]\\d{3})|0?2/(?:2[0-8]|1[0-9]|0?[1-9])/(?:1[8-9]\\d{2}|[2-9]\\d{3})|0?2/29/[2468][048]00|0?2/29/[3579][26]00|0?2/29/[1][89][0][48]|0?2/29/[2-9][0-9][0][48]|0?2/29/1[89][2468][048]|0?2/29/[2-9][0-9][2468][048]|0?2/29/1[89][13579][26]|0?2/29/[2-9][0-9][13579][26])$'));
              this.formGroup.addControl('startdatecontrol', new
                  FormControl('', Validators.compose(validationcollection)));
              this.formGroup.addControl('enddatecontrol', new

@@ -10,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FormControl,FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewTaskComponent } from './view-task/view-task.component';
 import { FilterdataPipe } from './filterdata.pipe';
-import { EditTaskComponent } from './edit-task/edit-task.component';
 
 
 @NgModule({
@@ -18,8 +17,7 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
     AppComponent,
     AddTaskComponent,
     ViewTaskComponent,
-    FilterdataPipe,
-    EditTaskComponent
+    FilterdataPipe
   ],
   imports: [
     BrowserModule,

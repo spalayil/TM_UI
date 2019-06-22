@@ -93,7 +93,7 @@
                                   (click)="endTask(task.taskId)"  >End Task</button>
                           </div>                            
                           <div class="col-sm-1 padding-no-right-left">        
-                                  <button type="button" class="btn btn-secondary delTask" [disabled]='!task.status'
+                                  <button type="button" class="btn btn-secondary delTask" 
                                   (click)="deleteTask(task.taskId)"  >Delete</button>      
                               </div>
                           
@@ -124,12 +124,7 @@
                                           <div class="form-group"> 
                                               <input type="text" formControlName="taskcontrol"
                                               [(ngModel)]="taskEdit.taskName" class="form-control"> 
-                                      <!-- <div *ngIf="formGroup.controls['taskcontrol'].invalid && 
-                                      (formGroup.controls['taskcontrol'].dirty|| formGroup.controls['taskcontrol'].touched) "
-                                      class="alert alert-danger">
-                                       <div  [hidden]="!(formGroup.controls['taskcontrol'].hasError('required'))">
-                                          TaskName is required </div>
-                                          </div> -->
+
                                           </div>
                                   </div> 
                             </div>
